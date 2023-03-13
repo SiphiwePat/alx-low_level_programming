@@ -1,49 +1,27 @@
-#include "holberton.h"
-#include <stdio.h>
-
+#include "main.h"
 /**
- * _strncpy - function that concatenates two strings
+ * _strncpy - copy a string
+ * @dest: input value
+ * @src: input value
+ * @n: input value
  *
- * @dest: parameter defined in main
- * @src: parameter defined in main
- * @n: parameter defined in main
- *
- * Return: memory address of function (string)
+ * Return: dest
  */
-
 char *_strncpy(char *dest, char *src, int n)
 {
+	int j;
 
-	char *tmp1 = dest;
-	char *tmp2 = src;
-
-	while (src < tmp2 + n && *src != '\0')
+	j = 0;
+	while (j < n && src[j] != '\0')
 	{
-		*dest = *src;
-		src++;
-		dest++;
+		dest[j] = src[j];
+		j++;
 	}
-	while (src < tmp2 + n)
+	while (j < n)
 	{
-		*dest = '\0';
-		dest++;
-		src++;
+		dest[j] = '\0';
+		j++;
 	}
-	dest = tmp1;
-	src = tmp2;
-
-/*
- *	int i;
- *	char *tmp = dest;
- *
- *	for (i = 0; i < n && *src != '\0'; i++)
- *		*dest++ = *src++;
- *
- *	for ( ; i < n; i++)
- *		*dest++ = '\0';
- *
- *	dest = tmp;
- */
 
 	return (dest);
 }

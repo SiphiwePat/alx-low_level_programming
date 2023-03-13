@@ -1,15 +1,29 @@
-#include "holberton.h"
+#include "main.h"
 
 /**
- * _atoi - tbd
+ * _atoi - convert a string into an integer.
  *
- * @s: parameter defined in main, pointer to memory
+ * @s: the string to use.
  *
- * Return: 0 for now
+ * Return: integer.
  */
 
 int _atoi(char *s)
 {
-	s = s + 1;
-	return (0);
+	int sign = 1, i = 0;
+	unsigned int res = 0;
+
+	while (!(s[i] <= '9' && s[i] >= '0') && s[i] != '\0')
+	{
+		if (s[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (s[i] <= '9' && (s[i] >= '0' && s[i] != '\0'))
+	{
+		res = (res * 10) + (s[i] - '0');
+		i++;
+	}
+	res *= sign;
+	return (res);
 }

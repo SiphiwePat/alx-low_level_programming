@@ -1,20 +1,38 @@
-#include <stdio.h>
+#include "holberton.h"
 #include <stdlib.h>
-#include "bootcamp.h"
 /**
- * create_array - creates an array of chars, and initializes it w/ a char
- * @size: input size of array
- * @c: initializing char
- * Return: pointer to the array or NULL if it fails
+ * create_array - create an array of chars
+ * @size: size of the memory to print
+ * @c: character to print
+ *
+ * Return: a pointer of array or NULL if it fails
  */
 char *create_array(unsigned int size, char c)
 {
-	char *pstr;
+	char *array;
 	unsigned int i;
 
-	pstr = malloc(sizeof(char) * size);
-	for (i = 0; i < size; i++)
-		pstr[i] = c;
-	pstr[i] = 0;
-	return (size < 1 ? 0 : pstr);
+	i = 0;
+
+	if (size == 0)
+	{
+		return ('\0');
+	}
+	else
+	{
+		array = malloc(sizeof(char) * size);
+			if (array == '\0')
+			{
+				return ('\0');
+			}
+			else
+			{
+				while (i < size)
+				{
+					array[i] = c;
+					i++;
+				}
+			}
+		return (array);
+	}
 }

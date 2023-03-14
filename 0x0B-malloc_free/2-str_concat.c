@@ -1,83 +1,91 @@
-#include "main.h"
-		
+#include "holberton.h"
 #include <stdlib.h>
-		
+
 /**
-		
- * str_concat - get ends of input and add together for size
-		
- * @s1: input one to concat
-		
- * @s2: input two to concat
-		
- * Return: concat of s1 and s2
-		
+ * _strlen - give the length of a string
+ * @s: the string
+ *
+ * Return: the length of a string
  */
-		
-char *str_concat(char *s1, char *s2)
-		
+int _strlen(char *s)
 {
-		
-	char *conct;
-		
-	int i, ci;
-		
+	int i;
 
-		
-	if (s1 == NULL)
-		
+	for (i = 0 ; s[i] != '\0' ; i++)
+		;
+	return (i);
+}
+
+/**
+ * _strcat - concatenates two strings
+ * @dest: input parameter string
+ * @src: input parameter string
+ *
+ * Return: dest
+ */
+char *_strcat(char *dest, char *src)
+{
+	int a;
+	int b;
+
+	a = 0;
+
+	while (dest[a] != 0)
+	{
+		a++;
+	}
+
+	b = 0;
+
+	while (src[b] != 0)
+	{
+		dest[a] = src[b];
+		a++;
+		b++;
+	}
+	return (dest);
+}
+
+/**
+ * str_concat - concatenate to strings
+ * @s1: the string to print
+ * @s2: the string to print
+ *
+ * Return: pointer that contains the content of s1 followed by s2
+ */
+char *str_concat(char *s1, char *s2)
+{
+	int length;
+	char *space;
+
+	if (s1 == '\0')
+	{
 		s1 = "";
-		
-	if (s2 == NULL)
-		
+	}
+	if (s2 == '\0')
+	{
 		s2 = "";
-		
-
-		
-		i = ci = 0;
-		
-	while (s1[i] != '\0')
-		
-		i++;
-		
-	while (s2[ci] != '\0')
-		
-		ci++;
-		
-	conct = malloc(sizeof(char) * (i + ci + 1));
-		
-
-		
-	if (conct == NULL)
-		
-		return (NULL);
-		
-	i = ci = 0;
-		
-	while (s1[i] != '\0')
-		
-	{
-		
-		conct[i] = s1[i];
-		
-		i++;
-		
 	}
-		
 
-		
-	while (s2[ci] != '\0')
-		
+	length = _strlen(s1) + _strlen(s2);
+	if (s1 != '\0' && s2 != '\0')
 	{
-		
-		conct[i] = s2[ci];
-		
-		i++, ci++;
-		
+		space = malloc(sizeof(char) * length + 1);
+
+		if (space == '\0')
+		{
+			return ('\0');
+		}
+		else
+		{
+			space = _strcat(space, s1);
+			space = _strcat(space, s2);
+		}
 	}
-		
-	conct[i] = '\0';
-		
-	return (conct);
-		
+	else
+	{
+		space = "";
+	}
+	return (space);
+	free(space);
 }

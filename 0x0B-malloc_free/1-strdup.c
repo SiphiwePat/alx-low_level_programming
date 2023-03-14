@@ -1,57 +1,52 @@
-#include <stdio.h>
-		
-#include <stdlib.h>
-		
-#include "main.h"
-		
+#include "holberton.h"
 /**
-		
- * _strdup - duplicate to new memory space location
-		
- * @str: char
-		
- * Return: 0
-		
+ * _strlen - give the length of a string
+ * @s: the string
+ *
+ * Return: the length of a string
  */
-		
-char *_strdup(char *str)
-		
+int _strlen(char *s)
 {
-		
-	char *aaa;
-		
-	int i, r = 0;
-		
+	int i;
 
-		
-	if (str == NULL)
-		
-		return (NULL);
-		
-	i = 0;
-		
-	while (str[i] != '\0')
-		
-		i++;
-		
+	for (i = 0 ; s[i] != '\0' ; i++)
+		;
+	return (i);
+}
+#include "holberton.h"
+#include <stdlib.h>
+#include <stdio.h>
+/**
+ * _strdup - returns a pointer which contains a copy of the string
+ * given as a parameter
+ * @str: The string to print
+ *
+ *
+ * Return: a pointer to the duplicated string or NULL if insufficient
+ * memory was available
+ */
+char *_strdup(char *str)
+{
+	int i;
+	char *copy;
 
-		
-	aaa = malloc(sizeof(char) * (i + 1));
-		
-
-		
-	if (aaa == NULL)
-		
-		return (NULL);
-		
-
-		
-	for (r = 0; str[r]; r++)
-		
-		aaa[r] = str[r];
-		
-
-		
-	return (aaa);
-		
+	if (str == '\0')
+	{
+		return ('\0');
+	}
+	i = _strlen(str);
+	copy = malloc(sizeof(char) * i + 1);
+	if (copy == '\0')
+	{
+		return ('\0');
+	}
+	else
+	{
+		for (i = 0 ; str[i] != '\0' ; i++)
+		{
+			copy[i] = str[i];
+		}
+	}
+	copy[i] = '\0';
+	return (copy);
 }

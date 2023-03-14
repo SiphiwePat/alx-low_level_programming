@@ -1,79 +1,47 @@
-#include "main.h"
-		
 #include <stdlib.h>
-		
+#include <stdio.h>
+#include "holberton.h"
 /**
-		
- * argstostr - main entry
-		
- * @ac: int input
-		
- * @av: double pointer array
-		
+ * _realloc - reallocates old to new, set conditions from problem
+ * returning dest w/ size of malloc new_size, set src as ptr
+ * @ptr: pointer to memory prev alloc, must free end
+ * @old_size: input old
+ * @new_size: input new
  * Return: 0
-		
  */
-		
-char *argstostr(int ac, char **av)
-		
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-		
-	int i, n, r = 0, l = 0;
-		
-	char *str;
-		
+	char *dest, *src;
+	unsigned int i;
 
-		
-	if (ac == 0 || av == NULL)
-		
+	if (new_size == old_size)
+		return (ptr);
+
+	if (ptr == NULL)
+	{
+		ptr = malloc(new_size);
+		if (ptr == NULL)
+		{
+			return (NULL);
+		}
+		return (ptr);
+	}
+
+	if (new_size == 0 && ptr != NULL)
+	{
+		free(ptr);
 		return (NULL);
-		
-
-		
-	for (i = 0; i < ac; i++)
-		
-	{
-		
-		for (n = 0; av[i][n]; n++)
-		
-			l++;
-		
 	}
-		
-	l += ac;
-		
 
-		
-	str = malloc(sizeof(char) * l + 1);
-		
-	if (str == NULL)
-		
+	dest = malloc(new_size);
+	if (dest == NULL)
 		return (NULL);
-		
-	for (i = 0; i < ac; i++)
-		
-	{
-		
-	for (n = 0; av[i][n]; n++)
-		
-	{
-		
-		str[r] = av[i][n];
-		
-		r++;
-		
-	}
-		
-	if (str[r] == '\0')
-		
-	{
-		
-		str[r++] = '\n';
-		
-	}
-		
-	}
-		
-	return (str);
-		
+
+	src = ptr;
+
+	for (i = 0; i < new_size && i < old_size; i++)
+		dest[i] = src[i];
+	free(ptr);
+
+	return (dest);
 }

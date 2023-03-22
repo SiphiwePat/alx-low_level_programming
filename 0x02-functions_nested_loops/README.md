@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Functions, nested loops
 		
@@ -60,3 +61,6 @@ All of the following files are programs written in C:
 | `103-fibonacci.c` | Finds and prints the sum of the even-valued terms |
 		
 | `104-fibonacci.c` | Finds and prints the first 98 Fibonacci numbers |
+=======
+0x02. C - Functions, nested loops
+>>>>>>> 295d5dd5b770bf51955fa99842cc164e8e42857d

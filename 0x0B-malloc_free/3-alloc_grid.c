@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <stdlib.h>
 #include "holberton.h"
 
@@ -29,10 +30,44 @@ int **alloc_grid(int width, int height)
 			free(array);
 			for (j = 0; j <= i; j++)
 				free(array[j]);
+=======
+#include "main.h"
+#include <stdlib.h>
+/**
+ * alloc_grid - nested loop to make grid
+ * @width: width input
+ * @height: height input
+ * Return: pointer to 2 dim. array
+ */
+int **alloc_grid(int width, int height)
+{
+	int **mee;
+	int x, y;
+
+	if (width <= 0 || height <= 0)
+		return (NULL);
+
+	mee = malloc(sizeof(int *) * height);
+
+	if (mee == NULL)
+		return (NULL);
+
+	for (x = 0; x < height; x++)
+	{
+		mee[x] = malloc(sizeof(int) * width);
+
+		if (mee[x] == NULL)
+		{
+			for (; x >= 0; x--)
+				free(mee[x]);
+
+			free(mee);
+>>>>>>> 295d5dd5b770bf51955fa99842cc164e8e42857d
 			return (NULL);
 		}
 	}
 
+<<<<<<< HEAD
 	for (i = 0; i < height; i++)
 	{
 		for (j = 0; j < width; j++)
@@ -41,4 +76,13 @@ int **alloc_grid(int width, int height)
 		}
 	}
 	return (array);
+=======
+	for (x = 0; x < height; x++)
+	{
+		for (y = 0; y < width; y++)
+			mee[x][y] = 0;
+	}
+
+	return (mee);
+>>>>>>> 295d5dd5b770bf51955fa99842cc164e8e42857d
 }

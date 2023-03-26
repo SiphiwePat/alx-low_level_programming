@@ -1,42 +1,48 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define PASSWORD_LENGTH 12
-
 /**
- * main - generates a random valid password for the 101-crackme program
+ * checksum - executes checksum
+ * @s: input char
+ * Return: checksum
+ */
+unsigned long checksum(char *s)
+{
+unsigned long sum = 0;
+while (*s != 0)
+{
+	sum += *s;
+	s++;
+}
+return (sum);
+}
+/**
+ * main - prints password for crakme
  *
- * Return: 0 on success
+ * Return: Always 0.
  */
 int main(void)
 {
-	char password[PASSWORD_LENGTH + 1]; /* +1 for null terminator */
-	int i;
+	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQSTUVWXYZ";
+	char s[33];
+	unsigned long sum;
+	int i, flag = 0;
 
-	srand(time(NULL)); /* seed the random number generator with the current time */
-
-	/* generate random characters for the password */
-	for (i = 0; i < PASSWORD_LENGTH; i++)
+	srand(time(NULL));
+	while (flag == 0)
 	{
-		int random_num = rand() % 62; /* there are 62 possible characters */
-		if (random_num < 26)
+		for (i = 0; i < 33; i++)
 		{
-			password[i] = 'a' + random_num; /* lowercase letter */
+			s[i] = alpha[rand() % (sizeof(alpha) - 1)];
 		}
-		else if (random_num < 52)
+		s[i] = '\0';
+		sum = checksum(s);
+		if (sum == 2772)
 		{
-			password[i] = 'A' + random_num - 26; /* uppercase letter */
-		}
-		else
-		{
-			password[i] = '0' + random_num - 52; /* digit */
+			flag = 1;
+			printf("%s", s);
 		}
 	}
-
-	password[PASSWORD_LENGTH] = '\0'; /* add null terminator */
-
-	printf("%s\n", password); /* print the password */
-
-	return (0);
+return (0);
 }

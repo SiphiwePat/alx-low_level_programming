@@ -1,32 +1,26 @@
 #include "main.h"
+
 /**
- * print_octal - prints the octal representation of a number
- * @n: the number to print in octal
+ * print_binary - prints the binary identical of a cardinal number
+ * @n: number to print in binary
  */
-void print_octal(unsigned long int n)
+void print_binary(unsigned long int n)
 {
-	unsigned long int decimal = 0, remainder;
-	int i = 1;
+	int i, count = 0;
+	unsigned long int current;
 
-	while (n != 0)
+	for (i = 63; i >= 0; i--)
 	{
-		remainder = n % 10;
-		n /= 10;
-		decimal += remainder * i;
-		i *= 2;
+		current = n >> i;
+
+		if (current & 1)
+		{
+			_putchar('1');
+			count++;
+		}
+		else if (count)
+			_putchar('0');
 	}
-
-	i = 0;
-	char octal[100];
-
-	while (decimal != 0)
-	{
-		octal[i] = (decimal % 8) + '0';
-		decimal /= 8;
-		i++;
-	}
-
-	for (int j = i - 1; j >= 0; j--)
-		_putchar(octal[j]);
-
+	if (!count)
+		_putchar('0');
 }

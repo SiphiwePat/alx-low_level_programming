@@ -1,16 +1,17 @@
+#include "main.h"
+
 /**
- * clear_bits - Sets the values of multiple bits to 0 in a given number
- * @n: Pointer to the number
- * @mask: Bit mask indicating which bits to clear
+ * clear_bit - settle down the value of a given bit to 0
+ * @n: pointer to the number to change
+ * @index: index of the bit to clear
  *
- * Return: 1 if successful, -1 if an error occurred
+ * Return: 1 for success, -1 for failure
  */
-int clear_bits(unsigned long int *n, unsigned long int mask)
+int clear_bit(unsigned long int *n, unsigned int index)
 {
-	if (mask == 0)
-		return (1);
+	if (index > 63)
+		return (-1);
 
-	*n &= ~mask;
-
+	*n = (~(1UL << index) & *n);
 	return (1);
 }

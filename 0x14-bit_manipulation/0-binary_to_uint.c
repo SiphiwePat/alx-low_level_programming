@@ -1,16 +1,25 @@
 #include "main.h"
 
 /**
- * get_bit - gets the value of a bit at a given index
- * @n: number to get bit value of
- * @index: index of bit to get
+ * binary_to_uint - transform a binary number to unsigned int
+ * @b: string containing the binary number
  *
- * Return: bit value at index or -1 if an error occurs
+ * Return: the configured number
  */
-int get_bit(unsigned long int n, unsigned int index)
+unsigned int binary_to_uint(const char *b)
 {
-	if (index >= sizeof(unsigned long int) * 8)
-		return (-1);
+	int i;
+	unsigned int dec_val = 0;
 
-	return ((n >> index) & 1);
+	if (!b)
+		return (0);
+
+	for (i = 0; b[i]; i++)
+	{
+		if (b[i] < '0' || b[i] > '1')
+			return (0);
+		dec_val = 2 * dec_val + (b[i] - '0');
+	}
+
+	return (dec_val);
 }

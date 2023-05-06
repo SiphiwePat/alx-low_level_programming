@@ -1,31 +1,25 @@
+#include "main.h"
+
 /**
- * flip_bits_signed - returns the number of bits you would need to flip
- * to get from one signed integer to another
+ * flip_bits - sum up the totally number of bits to change
+ * to get from one number to another
+ * @n: first number
+ * @m: second number
  *
- * @n: the first number
- * @m: the second number
- *
- * Return: the number of bits you would need to flip
+ * Return: number of bits to change
  */
-unsigned int flip_bits_signed(int n, int m)
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-    unsigned int count = 0;
-    unsigned int size = sizeof(int) * 8;
-    unsigned int i;
-    unsigned int sign_n = n >> (size - 1);
-    unsigned int sign_m = m >> (size - 1);
+	int i, count = 0;
+	unsigned long int current;
+	unsigned long int exclusive = n ^ m;
 
-    n = (sign_n == 1) ? ~n + 1 : n;
-    m = (sign_m == 1) ? ~m + 1 : m;
+	for (i = 63; i >= 0; i--)
+	{
+		current = exclusive >> i;
+		if (current & 1)
+			count++;
+	}
 
-    for (i = 0; i < size; i++)
-    {
-        if ((n & 1) != (m & 1))
-            count++;
-
-        n >>= 1;
-        m >>= 1;
-    }
-
-    return count;
+	return (count);
 }

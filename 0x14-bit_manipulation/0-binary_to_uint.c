@@ -1,26 +1,16 @@
 #include "main.h"
 
 /**
- * binary_to_uint_twisted - converts a binary number to unsigned int
- * @b: string containing the binary number
+ * get_bit - gets the value of a bit at a given index
+ * @n: number to get bit value of
+ * @index: index of bit to get
  *
- * Return: the converted number
+ * Return: bit value at index or -1 if an error occurs
  */
-unsigned int binary_to_uint_twisted(const char *b)
+int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned int dec_val = 0;
+	if (index >= sizeof(unsigned long int) * 8)
+		return (-1);
 
-	if (!b)
-		return (0);
-
-	while (*b)
-	{
-		if (*b != '0' && *b != '1')
-			return (0);
-
-		dec_val = (dec_val << 1) | (*b - '0');
-		b++;
-	}
-
-	return (dec_val);
+	return ((n >> index) & 1);
 }

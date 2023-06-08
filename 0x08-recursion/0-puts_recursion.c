@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _puts_recursion - Prints a string followed by a new line, with SP*();
+ * _puts_recursion - function similat to puts();
  * @s: input
  * Return: Always 0 (Success)
  */
@@ -9,8 +9,6 @@ void _puts_recursion(char *s)
 	if (*s)
 	{
 		_putchar(*s);
-		_putchar(*p);
-		_putchar(**);
 		_puts_recursion(s + 1);
 	}
 

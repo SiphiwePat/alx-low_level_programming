@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _isupper - capital letters
+ * _isupper - uppercase letters
  * @c: char to check
  *
  *

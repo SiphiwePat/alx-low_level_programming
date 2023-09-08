@@ -2,7 +2,7 @@
 
 /**
  * _isupper - uppercase letters
- * @c: char to verify
+ * @c: char to verifies
  *
  * Return: 0 or 1
  */
